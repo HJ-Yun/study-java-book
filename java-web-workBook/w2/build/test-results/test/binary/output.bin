@@ -1,0 +1,6 @@
+d14:32:22.910 [Test worker] INFO  org.zerock.service.TodoServiceTest - ----------------------------
+•14:32:22.915 [Test worker] INFO  org.zerock.service.TodoServiceTest - TodoDTO(tno=null, title=JDBC Test Title4, dueDate=2025-08-14, finished=false)
+“14:32:22.954 [Test worker] INFO  org.zerock.w2.service.TodoService - TodoVO(tno=null, title=JDBC Test Title4, dueDate=2025-08-14, finished=false)
+b14:32:22.983 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+‹14:32:23.250 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@22df874e
+g14:32:23.254 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.

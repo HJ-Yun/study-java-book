@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.zerock.service.TodoServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-08-14T05:32:22" hostname="DESKTOP-6GE5M7E" time="0.5">
+  <properties/>
+  <testcase name="testRegister()" classname="org.zerock.service.TodoServiceTest" time="0.5"/>
+  <system-out><![CDATA[14:32:22.910 [Test worker] INFO  org.zerock.service.TodoServiceTest - ----------------------------
+14:32:22.915 [Test worker] INFO  org.zerock.service.TodoServiceTest - TodoDTO(tno=null, title=JDBC Test Title4, dueDate=2025-08-14, finished=false)
+14:32:22.954 [Test worker] INFO  org.zerock.w2.service.TodoService - TodoVO(tno=null, title=JDBC Test Title4, dueDate=2025-08-14, finished=false)
+14:32:22.983 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:32:23.250 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@22df874e
+14:32:23.254 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
