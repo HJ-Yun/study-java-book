@@ -64,7 +64,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${dtoList}" var="dto">
+                                        <%-- <c:forEach items="${dtoList}" var="dto">
                                             <tr>
                                                 <th scope="row"><c:out value="${dto.tno}"/></th>
                                                 <td><a href="/todo/read?tno=${dto.tno}"><c:out value="${dto.title}"/></a></td>
@@ -72,9 +72,36 @@
                                                 <td><c:out value="${dto.dueDate}"/></td>
                                                 <td><c:out value="${dto.finished}"/></td>
                                             </tr>
+                                        </c:forEach> --%>
+                                        <c:forEach items="${responseDTO.dtoList}" var="dto">
+                                            <tr>
+                                                <th scope="row"><c:out value="${dto.tno}"/></th>
+                                                <td><a href="/todo/read?tno=${dto.tno}" class="text-decoration-none"><c:out value="${dto.title}"/></a></td>
+                                                <td><c:out value="${dto.writer}"/></td>
+                                                <td><c:out value="${dto.dueDate}"/></td>
+                                                <td><c:out value="${dto.finished}"/></td>
+                                            </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
+                                <div class="float-end">
+                                    <ul class="pagination flex-wrap">
+                                        <c:if test="${responseDTO.prev}">
+                                            <li class="page-item disabled">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                        </c:if>
+                                        <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var="num">
+                                            <li class="page-item ${responseDTO.page == num ? "active":""}"><a class="page-link" href="#">${num}</a></li>
+                                        </c:forEach>
+                                        <c:if test="${responseDTO.next}">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+
+                                </div>
                             </div>
                         </div>
                     </div>

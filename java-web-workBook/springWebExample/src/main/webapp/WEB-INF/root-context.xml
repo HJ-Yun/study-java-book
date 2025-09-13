@@ -41,10 +41,10 @@
     <!-- Get SQL mapping information through scanning interface -->
     <mybatis:scan base-package="org.zerock.springwebexample.mapper"></mybatis:scan>
 
-    <!-- Manage bean of ModelMapper-->
+    <!-- Manage bean of ModelMapper -->
     <context:component-scan base-package="org.zerock.springwebexample.config"/>
 
-    <!-- Manage bean of TodoService-->
+    <!-- Manage bean of TodoService -->
     <context:component-scan base-package="org.zerock.springwebexample.service"/>
 
 </beans>

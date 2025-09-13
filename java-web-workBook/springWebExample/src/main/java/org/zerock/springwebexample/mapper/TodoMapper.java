@@ -1,6 +1,8 @@
 package org.zerock.springwebexample.mapper;
 
 import org.zerock.springwebexample.domain.TodoVO;
+import org.zerock.springwebexample.dto.PageRequestDTO;
+
 import java.util.List;
 
 public interface TodoMapper {
@@ -16,5 +18,9 @@ public interface TodoMapper {
     void deleteOne(Long tno);
 
     void updateOne(TodoVO todoVO);
+
+    List<TodoVO> selectList(PageRequestDTO pageRequestDTO);
+
+    int getCount(PageRequestDTO pageRequestDTO);
 
 }
