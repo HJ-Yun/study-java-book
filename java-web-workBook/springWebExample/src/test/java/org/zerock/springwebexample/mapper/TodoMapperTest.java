@@ -41,7 +41,6 @@ public class TodoMapperTest {
         List<TodoVO> list = todoMapper.selectAll();
 
         list.forEach(vo -> log.info(vo));
-
     }
 
     @Test
@@ -49,7 +48,6 @@ public class TodoMapperTest {
         TodoVO todoVO = todoMapper.selectOne(3L);
 
         log.info(todoVO);
-
     }
 
     @Test
@@ -63,7 +61,22 @@ public class TodoMapperTest {
         List<TodoVO> list = todoMapper.selectList(pageRequestDTO);
 
         log.info(list);
+    }
 
+    @Test
+    public void search(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO
+                .builder()
+                .page(1)
+                .size(10)
+                .types(new String[]{"t","w"})
+                .keyword("AAAA")
+                .finished(true)
+                .build();
+
+        List<TodoVO> list = todoMapper.selectList(pageRequestDTO);
+
+        log.info(list);
     }
 
 

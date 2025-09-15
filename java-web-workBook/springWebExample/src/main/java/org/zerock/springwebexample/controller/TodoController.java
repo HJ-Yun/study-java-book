@@ -64,7 +64,7 @@ public class TodoController {
     }
 
     @GetMapping({"/read", "/modify"})
-    public void readGet(Long tno, Model model){
+    public void readGet(Long tno, PageRequestDTO pageRequestDTO,Model model){
         TodoDTO todoDTO = todoService.getOne(tno);
         log.info(todoDTO);
 
@@ -73,17 +73,17 @@ public class TodoController {
     }
 
     @PostMapping("/remove")
-    public String removePost(Long tno, RedirectAttributes redirectAttributes){
+    public String removePost(Long tno, PageRequestDTO pageRequestDTO,RedirectAttributes redirectAttributes){
         log.info("---------remove-------------------");
         log.info("tno : " + tno);
 
         todoService.removeOne(tno);
 
-        return "redirect:/todo/list";
+        return "redirect:/todo/list?" + pageRequestDTO.getLink();
     }
 
     @PostMapping("/modify")
-    public String modifyOne(@Valid TodoDTO todoDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String modifyOne(@Valid TodoDTO todoDTO, PageRequestDTO pageRequestDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         log.info("---------modify-------------------");
 
         if (bindingResult.hasErrors()){
@@ -97,7 +97,9 @@ public class TodoController {
         log.info("todoDTO : " + todoDTO);
         todoService.modifyOne(todoDTO);
 
-        return "redirect:/todo/list";
+        redirectAttributes.addAttribute("tno", todoDTO.getTno());
+
+        return "redirect:/todo/read";
     }
 
 
