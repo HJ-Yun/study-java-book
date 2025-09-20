@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.zerock.springwebexample.mapper.TodoMapperTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-15T04:03:24" hostname="DESKTOP-6GE5M7E" time="0.244">
+  <properties/>
+  <testcase name="search()" classname="org.zerock.springwebexample.mapper.TodoMapperTest" time="0.244"/>
+  <system-out><![CDATA[01:03:22  INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+01:03:22  INFO [org.springframework.test.context.support.DefaultTestContextBootstrapper] Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1a1d3c1a, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1c65121, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@159e366, org.springframework.test.context.support.DirtiesContextTestExecutionListener@57dc9128, org.springframework.test.context.transaction.TransactionalTestExecutionListener@24528a25, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@17ae98d7, org.springframework.test.context.event.EventPublishingTestExecutionListener@59221b97]
+01:03:23  INFO [com.zaxxer.hikari.HikariDataSource] HikariPool-1 - Starting...
+01:03:23  INFO [com.zaxxer.hikari.pool.HikariPool] HikariPool-1 - Added connection org.mariadb.jdbc.Connection@6cd164a6
+01:03:23  INFO [com.zaxxer.hikari.HikariDataSource] HikariPool-1 - Start completed.
+01:03:24 DEBUG [org.zerock.springwebexample.mapper.TodoMapper.selectList] ==>  Preparing: select * from tbl_todo WHERE ( title like concat('%', ?, '%') OR title like concat('%', ?, '%') ) and finished = 1 order by tno desc limit ?, ?
+01:03:24 DEBUG [org.zerock.springwebexample.mapper.TodoMapper.selectList] ==> Parameters: AAAA(String), AAAA(String), 0(Integer), 10(Integer)
+01:03:24 DEBUG [org.zerock.springwebexample.mapper.TodoMapper.selectList] <==      Total: 0
+01:03:24  INFO [org.zerock.springwebexample.mapper.TodoMapperTest] []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
