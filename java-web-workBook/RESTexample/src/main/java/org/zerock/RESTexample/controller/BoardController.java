@@ -1,4 +1,4 @@
-package org.zerock.springbootwebexample.controller;
+package org.zerock.RESTexample.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -6,14 +6,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.springbootwebexample.dto.BoardDTO;
-import org.zerock.springbootwebexample.dto.PageRequestDTO;
-import org.zerock.springbootwebexample.dto.PageResponseDTO;
-import org.zerock.springbootwebexample.service.BoardService;
+import org.zerock.RESTexample.dto.BoardDTO;
+import org.zerock.RESTexample.dto.PageRequestDTO;
+import org.zerock.RESTexample.dto.PageResponseDTO;
+import org.zerock.RESTexample.service.BoardService;
 
 @Controller
 @RequestMapping("/board")
