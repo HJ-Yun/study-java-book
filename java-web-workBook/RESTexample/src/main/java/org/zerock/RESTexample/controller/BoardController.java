@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.RESTexample.dto.BoardDTO;
+import org.zerock.RESTexample.dto.BoardListReplyCountDTO;
 import org.zerock.RESTexample.dto.PageRequestDTO;
 import org.zerock.RESTexample.dto.PageResponseDTO;
 import org.zerock.RESTexample.service.BoardService;
@@ -25,7 +26,8 @@ public class BoardController {
     public void list(PageRequestDTO pageRequestDTO, Model model){
         log.info("board Get list---------");
 
-        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+//        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+        PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
 
         log.info(responseDTO);
 

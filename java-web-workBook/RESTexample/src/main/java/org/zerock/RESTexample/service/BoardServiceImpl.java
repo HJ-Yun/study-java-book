@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zerock.RESTexample.domain.Board;
 import org.zerock.RESTexample.dto.BoardDTO;
+import org.zerock.RESTexample.dto.BoardListReplyCountDTO;
 import org.zerock.RESTexample.dto.PageRequestDTO;
 import org.zerock.RESTexample.dto.PageResponseDTO;
 import org.zerock.RESTexample.repository.BoardRepository;
@@ -91,5 +92,20 @@ public class BoardServiceImpl implements BoardService{
                 .build();
     }
 
+    @Override
+    public PageResponseDTO<BoardListReplyCountDTO> listWithReplyCount(PageRequestDTO pageRequestDTO){
+
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPagealbe("bno");
+
+        Page<BoardListReplyCountDTO> result = boardRepository.searchWithReplyCount(types, keyword, pageable);
+
+        return PageResponseDTO.<BoardListReplyCountDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(result.getContent())
+                .total((int)result.getTotalElements())
+                .build();
+    }
 
 }

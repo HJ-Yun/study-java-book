@@ -1,5 +1,7 @@
 package org.zerock.RESTexample.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +17,15 @@ public class ReplyDTO {
 
     private Long rno;
 
+    @NotNull
     private Long bno;
 
+    @NotEmpty
     private String replyText;
 
+    @NotEmpty
     private String replyer;
 
     private LocalDateTime regDate, modDate;
+
 }
