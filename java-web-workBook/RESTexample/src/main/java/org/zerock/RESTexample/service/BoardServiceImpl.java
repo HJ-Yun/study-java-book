@@ -10,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zerock.RESTexample.domain.Board;
-import org.zerock.RESTexample.dto.BoardDTO;
-import org.zerock.RESTexample.dto.BoardListReplyCountDTO;
-import org.zerock.RESTexample.dto.PageRequestDTO;
-import org.zerock.RESTexample.dto.PageResponseDTO;
+import org.zerock.RESTexample.dto.*;
 import org.zerock.RESTexample.repository.BoardRepository;
 
 import java.util.List;
@@ -32,7 +29,8 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public Long register(BoardDTO boardDTO){
-        Board board = modelMapper.map(boardDTO, Board.class);
+//        Board board = modelMapper.map(boardDTO, Board.class);
+        Board board = dtoToEntity(boardDTO);
 
         Long bno = boardRepository.save(board).getBno();
 
@@ -106,6 +104,12 @@ public class BoardServiceImpl implements BoardService{
                 .dtoList(result.getContent())
                 .total((int)result.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO){
+
+        return null;
     }
 
 }

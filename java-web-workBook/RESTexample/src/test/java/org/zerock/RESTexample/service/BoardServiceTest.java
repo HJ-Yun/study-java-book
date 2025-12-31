@@ -8,6 +8,9 @@ import org.zerock.RESTexample.dto.BoardDTO;
 import org.zerock.RESTexample.dto.PageRequestDTO;
 import org.zerock.RESTexample.dto.PageResponseDTO;
 
+import java.util.Arrays;
+import java.util.UUID;
+
 @SpringBootTest
 @Log4j2
 public class BoardServiceTest {
@@ -24,6 +27,14 @@ public class BoardServiceTest {
                 .content("content test")
                 .writer("writer test")
                 .build();
+
+        boardDTO.setFileNames(
+                Arrays.asList(
+                        UUID.randomUUID()+"_aaa.jpg",
+                        UUID.randomUUID()+"_bbb.jpg",
+                        UUID.randomUUID()+"_ccc.jpg"
+                )
+        );
 
         Long bno = boardService.register(boardDTO);
 
