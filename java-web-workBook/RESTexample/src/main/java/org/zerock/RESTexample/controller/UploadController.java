@@ -29,7 +29,7 @@ public class UploadController {
     private String uploadPath;
 
     @Operation(summary = "upload POST", description = "File Upload")
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public List<UploadResultDTO> upload(UploadFileDTO uploadFileDTO){
         log.info(uploadFileDTO);
 
@@ -83,7 +83,7 @@ public class UploadController {
     }
 
     @Operation(summary = "upload DELETE", description = "Remove File")
-    @GetMapping(value = "/remove/{fileName}")
+    @DeleteMapping(value = "/remove/{fileName}")
     public Map<String, Boolean> removeFile(@PathVariable String fileName){
         Resource resource = new FileSystemResource(uploadPath+File.separator+fileName);
 
