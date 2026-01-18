@@ -11,9 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.zerock.RESTexample.security.CustomUserDetailsService;
+import org.zerock.RESTexample.security.handler.Custom403Handler;
 
 import javax.sql.DataSource;
 
@@ -32,12 +34,29 @@ public class CustomSecurityConfig {
     }
 
     @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new Custom403Handler();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         log.info("--------config-----------");
 
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                        "/member/login",
+                        "/member/login/**",
+                        "/board/list"
+                ).permitAll()
+                .anyRequest().authenticated()
+        );
+
         http.formLogin()
-                .loginPage("/member/login");
-//                .loginProcessingUrl("/member/login");
+                .loginPage("/member/login")
+                .defaultSuccessUrl("/board/list",true);
+
+        http.logout()
+                .logoutSuccessUrl("/member/login");
 
         http.csrf().disable();
 
@@ -46,6 +65,8 @@ public class CustomSecurityConfig {
                 .tokenRepository(persistentTokenRepository())
                 .userDetailsService(userDetailsService)
                 .tokenValiditySeconds(60*60*24*30);
+
+        http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 
         return http.build();
     }

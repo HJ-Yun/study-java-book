@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec ="http://www.thymeleaf.org/extras/spring-security6"
       layout:decorate="~{layout/basic.html}">
     <head>
         <title>Board Register</title>
@@ -25,7 +26,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Writer</span>
-                                <input class="form-control" type="text" name="writer" placeholder="Writer">
+                                <input class="form-control" type="text" name="writer" placeholder="Writer" th:value="${#authentication.principal.username}" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Image</span>
@@ -74,7 +75,11 @@
         <script src="/js/upload.js"></script>
     </div>
     <script layout:fragment="script" th:inline="javascript">
-        const errors = [[${errors}]];
+        const auth = [[${#authentication.principal}]]
+        console.log(auth)
+
+        const errors = [[${errors}]]
+        console.log(errors)
 
         let errorMsg = '';
 
