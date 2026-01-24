@@ -46,7 +46,9 @@ public class CustomSecurityConfig {
                 .requestMatchers(
                         "/member/login",
                         "/member/login/**",
-                        "/board/list"
+                        "/board/list",
+                        "/member/join",
+                        "member/join/**"
                 ).permitAll()
                 .anyRequest().authenticated()
         );

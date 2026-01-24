@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec ="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout/basic.html}">
+<head>
+    <title>Member Join page</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        JOIN
+                    </div>
+                    <div class="card-body">
+                        <form id="registerForm" action="/member/join" method="post">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">MID</span>
+                                <input type="text" name="mid" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">MPW</span>
+                                <input type="text" name="mpw" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">EMAIL</span>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                            <div class="my-4">
+                                <div class="float-end">
+                                    <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script layout:fragment="script" th:inline="javascript">
+    const error = [[${error}]]
+
+    if (error && error === 'mid'){
+        alert("same ID");
+    }
+</script>
+</html>
