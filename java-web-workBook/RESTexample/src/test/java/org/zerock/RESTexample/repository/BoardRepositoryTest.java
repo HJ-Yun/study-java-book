@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.RESTexample.domain.Board;
@@ -27,9 +28,12 @@ public class BoardRepositoryTest {
 
     @Autowired
     private BoardRepository boardRepository;
-
     @Autowired
     private ReplyRepository replyRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Test
     public void testInsert(){
@@ -233,5 +237,15 @@ public class BoardRepositoryTest {
         result.getContent().forEach(boardListAllDTO -> {
             log.info(boardListAllDTO);
         });
+    }
+
+    @Commit
+    @Test
+    public void updatePassword(){
+        String mid = "ユン(윤혁진)";
+        String mpw = passwordEncoder.encode("54321");
+
+        memberRepository.updatePassword(mpw, mid);
+
     }
 }
