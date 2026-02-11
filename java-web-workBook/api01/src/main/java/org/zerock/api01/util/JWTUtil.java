@@ -34,7 +34,7 @@ public class JWTUtil {
         Map<String,Object> payload = new HashMap<>();
         payload.putAll(valueMap);
 
-        int time = (60 * 24) * days;
+//        int time = (60 * 24) * days;
 
         SecretKey secretKey = Keys.hmacShaKeyFor(
                 key.getBytes(StandardCharsets.UTF_8)
@@ -44,7 +44,7 @@ public class JWTUtil {
                 .setHeader(headers)
                 .setClaims(payload)
                 .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
-                .setExpiration(Date.from(ZonedDateTime.now().plusDays(time).toInstant()))
+                .setExpiration(Date.from(ZonedDateTime.now().plusDays(days).toInstant()))
                 .signWith(secretKey)
                 .compact();
 

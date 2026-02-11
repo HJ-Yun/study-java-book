@@ -18,7 +18,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.zerock.api01.security.APIUserDetailsService;
 import org.zerock.api01.security.filter.APILoginFilter;
+import org.zerock.api01.security.filter.TokenCheckFilter;
 import org.zerock.api01.security.handler.APILoginSuccessHandler;
+import org.zerock.api01.util.JWTUtil;
 
 @Configuration
 @Log4j2
@@ -28,9 +30,15 @@ import org.zerock.api01.security.handler.APILoginSuccessHandler;
 public class CustomSecurityConfig {
 
     private final APIUserDetailsService apiUserDetailsService;
+    private final JWTUtil jwtUtil;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    private TokenCheckFilter tokenCheckFilter(JWTUtil jwtUtil){
+        return new TokenCheckFilter(jwtUtil);
     }
 
     @Bean
@@ -62,11 +70,13 @@ public class CustomSecurityConfig {
         apiLoginFilter.setAuthenticationManager(authenticationManager);
 
         // APILoginSuccessHandler
-        APILoginSuccessHandler successHandler = new APILoginSuccessHandler();
+        APILoginSuccessHandler successHandler = new APILoginSuccessHandler(jwtUtil);
         apiLoginFilter.setAuthenticationSuccessHandler(successHandler);
 
         // Set Location of APILoginFilter
         http.addFilterBefore(apiLoginFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.addFilterBefore(tokenCheckFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         http.csrf().disable(); // Disable CSRF token
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Disable Session
