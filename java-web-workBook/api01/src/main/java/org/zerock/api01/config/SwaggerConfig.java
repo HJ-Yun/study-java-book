@@ -1,7 +1,11 @@
 package org.zerock.api01.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +18,27 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("My API")
                         .description("API documentation")
-                        .version("v1.0"));
+                        .version("v1.0"))
+                .components(new Components()
+                        .addSecuritySchemes("BearerAuth",
+                                new SecurityScheme()
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")
+                        )
+                );
     }
+
+    @Bean
+    public GroupedOpenApi apiGroup() {
+        return GroupedOpenApi.builder()
+                .group("api")
+                .pathsToMatch("/api/**")
+                .addOperationCustomizer((operation, handlerMethod) -> {
+                    operation.addSecurityItem(new SecurityRequirement().addList("BearerAuth"));
+                    return operation;
+                })
+                .build();
+    }
+
 }

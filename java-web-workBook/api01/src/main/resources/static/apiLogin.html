@@ -12,7 +12,18 @@
 
   document.querySelector(".btn1").addEventListener("click", () => {
     const data = {mid:"apiUser10", mpw:"1111"}
-    axios.post("http://localhost:8080/generateToken", data)
+    axios.post("http://localhost:8080/generateToken", data).then(rest => {
+
+      const accessToken = rest.data.accessToken
+      const refreshToken = rest.data.refreshToken
+
+      localStorage.setItem("accessToken", accessToken)
+      localStorage.setItem("refreshToken", refreshToken)
+
+      console.log("accessToken : " + accessToken)
+      console.log("refreshToken : " + refreshToken)
+
+    })
   }, false)
 
 </script>
